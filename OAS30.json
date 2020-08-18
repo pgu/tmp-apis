@@ -1,0 +1,13 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "My api",
+    "description" : "No description",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://vi8hoqu.api-mock.int.cloud.talend.com",
+    "description" : "This is your API mock endpoint. When called, it will simulate the behavior of your API."
+  } ],
+  "paths" : { }
+}
