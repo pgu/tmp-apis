@@ -1,0 +1,128 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Copy of SW api",
+    "description" : "No description",
+    "contact" : { },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://vef29lq.eu.api-mocks.com",
+    "description" : "This is your API mock endpoint. When called, it will simulate the behavior of your API."
+  } ],
+  "paths" : {
+    "/api/people/{id}/" : {
+      "get" : {
+        "summary" : "get people",
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/People"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "People" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "height" : {
+            "type" : "string"
+          },
+          "mass" : {
+            "type" : "string"
+          },
+          "hair_color" : {
+            "type" : "string"
+          },
+          "skin_color" : {
+            "type" : "string"
+          },
+          "eye_color" : {
+            "type" : "string"
+          },
+          "birth_year" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "type" : "string"
+          },
+          "homeworld" : {
+            "type" : "string"
+          },
+          "films" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "species" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "vehicles" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "starships" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "created" : {
+            "type" : "string"
+          },
+          "edited" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          }
+        },
+        "example" : "{\n\t\"name\": \"Luke Skywalker\",\n\t\"height\": \"172\",\n\t\"mass\": \"77\",\n\t\"hair_color\": \"blond\",\n\t\"skin_color\": \"fair\",\n\t\"eye_color\": \"blue\",\n\t\"birth_year\": \"19BBY\",\n\t\"gender\": \"male\",\n\t\"homeworld\": \"https://swapi.dev/api/planets/1/\",\n\t\"films\": [\n\t\t\"https://swapi.dev/api/films/2/\",\n\t\t\"https://swapi.dev/api/films/6/\",\n\t\t\"https://swapi.dev/api/films/3/\",\n\t\t\"https://swapi.dev/api/films/1/\",\n\t\t\"https://swapi.dev/api/films/7/\"\n\t],\n\t\"species\": [\n\t\t\"https://swapi.dev/api/species/1/\"\n\t],\n\t\"vehicles\": [\n\t\t\"https://swapi.dev/api/vehicles/14/\",\n\t\t\"https://swapi.dev/api/vehicles/30/\"\n\t],\n\t\"starships\": [\n\t\t\"https://swapi.dev/api/starships/12/\",\n\t\t\"https://swapi.dev/api/starships/22/\"\n\t],\n\t\"created\": \"2014-12-09T13:50:51.644000Z\",\n\t\"edited\": \"2014-12-20T21:17:56.891000Z\",\n\t\"url\": \"https://swapi.dev/api/people/1/\"\n}\n          "
+      }
+    },
+    "parameters" : {
+      "asdf" : {
+        "name" : "asdf",
+        "in" : "path",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "asdfdd" : {
+        "name" : "asdfdd",
+        "in" : "path",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
