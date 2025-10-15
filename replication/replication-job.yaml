@@ -1,0 +1,57 @@
+configVersion: 1.0
+project:
+  id: null # project id to be created
+  name: pgu - replicate - mysql_to_postgres
+  space: ref{{project.current.spaceId}}
+  type: DATA_MOVEMENT
+  tasks:
+    - id: null # data task runtime id to be created
+      name: task-replicate
+      description: A project to replicate data from MySQL to PostgreSQL
+      sourceConnection:
+        id: {{connections."myconnection-mysql_as_source".id}}
+        datasets:
+          - actor
+          - category
+          - film
+          - film_actor
+          - film_category
+          - film_text
+      targetConnection:
+        id: {{connections."myconnection-postgres_as_target".id}}
+      settings:
+        replicationType: 
+          - full-load
+          - apply-changes
+        applyChangesSettings:
+          batchOptimized: true
+        fullLoadSettings:
+          truncateBeforeLoad: true
+        customSchemas: 
+          targetDatasetSchema: public
+          controlTableSchema: dms_control
+        replicationScheduler:
+          startDate: 2024-01-01T00:00:00Z
+          frequency: 1h
+        errorHandling:
+          maxRetries: 3
+          retryInterval: 10
+        publishToCatalog: true
+      transformationRules:
+        - type: renameDataset
+          name: film to movie rule
+          description: uk to us renaming
+          sourceDataset: film
+          datasetNewName: movie
+        - type: renameDataset
+          name: film to movie rule
+          sourceDataset: film_actor
+          datasetNewName: movie_actor
+        - type: renameDataset
+          name: film to movie rule
+          sourceDataset: film_category
+          datasetNewName: movie_category
+        - type: renameDataset
+          name: film to movie rule
+          sourceDataset: film_text
+          datasetNewName: movie_text
