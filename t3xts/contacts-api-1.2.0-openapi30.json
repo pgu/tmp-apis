@@ -1,0 +1,307 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Contacts API",
+    "description" : "An API for managing contacts information",
+    "contact" : { },
+    "version" : "1.2.0"
+  },
+  "paths" : {
+    "/contacts/" : {
+      "get" : {
+        "summary" : "Get all contacts",
+        "parameters" : [ {
+          "name" : "$size",
+          "in" : "query",
+          "description" : "Size of the page to retrieve",
+          "schema" : {
+            "type" : "integer",
+            "description" : "Size of the page to retrieve"
+          },
+          "example" : 10
+        }, {
+          "name" : "$page",
+          "in" : "query",
+          "description" : "Number of the page to retrieve",
+          "schema" : {
+            "type" : "integer",
+            "description" : "Number of the page to retrieve"
+          },
+          "example" : 1
+        }, {
+          "name" : "$sort",
+          "in" : "query",
+          "description" : "Sorting order",
+          "schema" : {
+            "type" : "string",
+            "description" : "Sorting order"
+          },
+          "example" : "lastName ASC"
+        }, {
+          "name" : "firstName",
+          "in" : "query",
+          "description" : "Filter by first name",
+          "schema" : {
+            "type" : "string",
+            "description" : "Filter by first name"
+          },
+          "example" : "John"
+        }, {
+          "name" : "lastName",
+          "in" : "query",
+          "description" : "Filter by last name",
+          "schema" : {
+            "type" : "string",
+            "description" : "Filter by last name"
+          },
+          "example" : "Doe"
+        }, {
+          "name" : "email",
+          "in" : "query",
+          "description" : "Filter by email",
+          "schema" : {
+            "type" : "string",
+            "description" : "Filter by email"
+          },
+          "example" : "john.doe@example.com"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "headers" : {
+              "X-Page-Count" : {
+                "schema" : {
+                  "type" : "integer"
+                },
+                "example" : 1
+              },
+              "X-Page-Number" : {
+                "schema" : {
+                  "type" : "integer"
+                },
+                "example" : 1
+              },
+              "X-Page-Size" : {
+                "schema" : {
+                  "type" : "integer"
+                },
+                "example" : 25
+              },
+              "X-Total-Count" : {
+                "schema" : {
+                  "type" : "integer"
+                },
+                "example" : 2
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Contact"
+                  }
+                },
+                "example" : "[{\"id\": \"c8f8c5a0-b619-11e6-8408-0bdb025a7cfa\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@example.com\"}]"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a contact",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Contact"
+              },
+              "example" : "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@example.com\", \"phone\": \"+1234567890\"}"
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Contact"
+                },
+                "example" : "{\"id\": \"c8f8c5a0-b619-11e6-8408-0bdb025a7cfa\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@example.com\", \"phone\": \"+1234567890\"}"
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "HTTP_BASIC" : [ ]
+        } ]
+      }
+    },
+    "/contacts/{contactId}" : {
+      "get" : {
+        "summary" : "Get a contact",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Contact"
+                },
+                "example" : "{\"id\": \"c8f8c5a0-b619-11e6-8408-0bdb025a7cfa\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@example.com\"}"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update a contact",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Contact"
+              },
+              "example" : "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@example.com\", \"phone\": \"+1234567890\"}"
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Contact"
+                },
+                "example" : "{\"id\": \"c8f8c5a0-b619-11e6-8408-0bdb025a7cfa\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@example.com\", \"phone\": \"+1234567890\"}"
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "HTTP_BASIC" : [ ]
+        } ]
+      },
+      "delete" : {
+        "summary" : "Delete a contact",
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          }
+        },
+        "security" : [ {
+          "HTTP_BASIC" : [ ]
+        } ]
+      },
+      "parameters" : [ {
+        "name" : "contactId",
+        "in" : "path",
+        "required" : true,
+        "description" : "Unique identifier of the contact",
+        "schema" : {
+          "type" : "string",
+          "description" : "Unique identifier of the contact"
+        },
+        "example" : "c8f8c5a0-b619-11e6-8408-0bdb025a7cfa"
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Contact" : {
+        "type" : "object",
+        "required" : [ "firstName", "id", "lastName" ],
+        "description" : "A contact with personal information",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Auto-generated primary key field",
+            "example" : "c8f8c5a0-b619-11e6-8408-0bdb025a7cfa"
+          },
+          "firstName" : {
+            "type" : "string",
+            "example" : "John"
+          },
+          "lastName" : {
+            "type" : "string",
+            "example" : "Doe"
+          },
+          "birthday" : {
+            "type" : "string",
+            "format" : "date-time",
+            "description" : "Date of birth"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "john.doe@example.com"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+1234567890"
+          },
+          "address" : {
+            "type" : "string",
+            "example" : "123 Main St, City, Country"
+          },
+          "nickname" : {
+            "type" : "string"
+          },
+          "favorite-meal" : {
+            "type" : "string"
+          }
+        },
+        "example" : "{\"id\": \"c8f8c5a0-b619-11e6-8408-0bdb025a7cfa\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@example.com\", \"phone\": \"+1234567890\"}"
+      },
+      "Error" : {
+        "type" : "object",
+        "required" : [ "code" ],
+        "description" : "This general error structure is used throughout this API",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "minimum" : 400,
+            "maximum" : 599
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "Bad query parameter"
+          },
+          "reasonPhrase" : {
+            "type" : "string",
+            "example" : "Bad Request"
+          }
+        },
+        "example" : "{\"code\": 400, \"description\": \"Bad query parameter\", \"reasonPhrase\": \"Bad Request\"}"
+      }
+    },
+    "securitySchemes" : {
+      "HTTP_BASIC" : {
+        "type" : "http",
+        "scheme" : "basic",
+        "description" : "Basic HTTP authentication"
+      }
+    }
+  }
+}
