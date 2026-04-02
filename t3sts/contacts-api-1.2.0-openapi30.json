@@ -264,6 +264,9 @@
           "address" : {
             "type" : "string",
             "example" : "123 Main St, City, Country"
+          },
+          "nickname" : {
+            "type" : "string"
           }
         },
         "example" : "{\"id\": \"c8f8c5a0-b619-11e6-8408-0bdb025a7cfa\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"john.doe@example.com\", \"phone\": \"+1234567890\"}"
